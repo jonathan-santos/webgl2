@@ -1,3 +1,5 @@
+const gl = getGLContext({ width: 400, height: 400 })
+
 const vertexShaderSource = `#version 300 es
   in vec4 a_position;
 
@@ -16,10 +18,10 @@ const fragmentShaderSource = `#version 300 es
   }
 `
 
-const vertexShader = createShader(gl.VERTEX_SHADER, vertexShaderSource)
-const fragmentShader = createShader(gl.FRAGMENT_SHADER, fragmentShaderSource)
+const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)
+const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource)
 
-const program = createProgram(vertexShader, fragmentShader)
+const program = createProgram(gl, vertexShader, fragmentShader)
 
 const positionAttributeLocation = gl.getAttribLocation(program, "a_position")
 

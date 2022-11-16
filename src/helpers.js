@@ -1,11 +1,20 @@
-const canvas = document.querySelector('canvas')
-const gl = canvas.getContext('webgl2')
+const getGLContext = ({ canvasSelector = 'canvas', width, height }) => {
+  const canvas = document.querySelector(canvasSelector)
+  canvas.width = width
+  canvas.height = height
+  
+  const gl = canvas.getContext('webgl2')
+  
+  if (!gl) {
+    alert('Your browser does not support WebGL2')
+    throw new Error('Unsupported browser')
+  }
 
-if (!gl) {
-  alert('Your browser does not support WebGL2')
+  return gl
 }
 
-const createShader = (type, source) => {
+
+const createShader = (gl, type, source) => {
   const shader = gl.createShader(type)
   gl.shaderSource(shader, source)
   gl.compileShader(shader)
@@ -22,7 +31,7 @@ const createShader = (type, source) => {
   return shader
 }
 
-const createProgram = (vertexShader, fragmentShader) => {
+const createProgram = (gl, vertexShader, fragmentShader) => {
   const program = gl.createProgram()
 
   gl.attachShader(program, vertexShader)

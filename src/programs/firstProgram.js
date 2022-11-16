@@ -48,4 +48,3 @@ gl.useProgram(program)
 gl.bindVertexArray(vao)
 
 gl.drawArrays(gl.TRIANGLES, 0, 3)
-

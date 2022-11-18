@@ -3,7 +3,7 @@ const getGLContext = ({ canvasSelector = 'canvas', width, height }) => {
   canvas.width = width
   canvas.height = height
   
-  const gl = canvas.getContext('webgl2')
+  gl = canvas.getContext('webgl2')
   
   if (!gl) {
     alert('Your browser does not support WebGL2')

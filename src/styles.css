@@ -25,3 +25,25 @@ canvas {
   max-width: 100%;
   flex: 1;
 }
+
+button {
+  margin: 1rem 0;
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  border-color: white;
+  border-radius: 0.3rem;
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+.menu,
+.program {
+  display: none;
+}
+
+main.m .menu,
+main.p .program {
+  display: block;
+}

@@ -3,51 +3,32 @@ const menuEl = document.querySelector('.menu')
 const programEl = document.querySelector('.program')
 const closeProgramBtnEl = document.querySelector('.close-program')
 
-function main() {
-  const programs = [
-    {
-      title: 'First Program',
-      file: 'firstProgram.js'
-    },
-    {
-      title: 'Gradient Triangle',
-      file: 'gradientTriangle.js'
-    },
-    {
-      title: 'Pixels Coordinates',
-      file: 'pixelsCoordinates.js'
-    },
-    {
-      title: 'Random Rectangles',
-      file: 'randomRectangles.js'
-    },
-    {
-      title: 'Unsigned Bytes Colors',
-      file: 'uByteColors.js'
-    },
-  ]
-  
-  programs.forEach((program) => {
-    const button = Object.assign(document.createElement('button'), {
-      innerHTML: program.title,
-      onclick: () => selectProgram(program)
-    })
-  
-    menuEl.appendChild(button)
-  })
+const programs = [
+  'firstProgram',
+  'gradientTriangle',
+  'pixelsCoordinates',
+  'randomRectangles',
+  'unsignedByteColors',
+]
+
+const queryParams = new URLSearchParams(window.location.search)
+
+const initialProgram = queryParams.get('p')
+
+if (initialProgram) {
+  selectProgram(programs[initialProgram])
 }
 
-function selectProgram(program) {
-  const script = Object.assign(document.createElement('script'), {
-    src: `./programs/${program.file}`,
-    async: true,
-    id: 'program'
+programs.forEach((program) => {
+  const title = `${program[0].toUpperCase()}${program.slice(1).split(/(?=[A-Z])/).join(' ')}`
+  
+  const button = Object.assign(document.createElement('button'), {
+    innerHTML: title,
+    onclick: () => selectProgram(program)
   })
 
-  mainEl.appendChild(script)
-
-  mainEl.classList.value = 'p'
-}
+  menuEl.appendChild(button)
+})
 
 closeProgramBtnEl.addEventListener('click', () => {
   const script = document.querySelector('#program')
@@ -56,4 +37,14 @@ closeProgramBtnEl.addEventListener('click', () => {
   mainEl.classList.value = 'm'
 })
 
-main()
+function selectProgram(program) {
+  const script = Object.assign(document.createElement('script'), {
+    src: `./programs/${program}.js`,
+    async: true,
+    id: 'program'
+  })
+
+  mainEl.appendChild(script)
+
+  mainEl.classList.value = 'p'
+}

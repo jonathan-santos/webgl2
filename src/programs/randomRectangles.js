@@ -1,7 +1,7 @@
 {
   const gl = getGLContext({ width: 400, height: 400 })
 
-  const vertexShaderSource = `#version 300 es
+  const vs = `#version 300 es
     in vec2 a_position;
 
     uniform vec2 u_resolution;
@@ -20,7 +20,7 @@
     }
   `
 
-  const fragmentShaderSource = `#version 300 es
+  const fs = `#version 300 es
     precision highp float;
 
     uniform vec4 u_color; 
@@ -32,10 +32,7 @@
     }
   `
 
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)
-  const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource)
-
-  const program = createProgram(gl, vertexShader, fragmentShader)
+  const program = createShaderProgram(gl, vs, fs)
 
   const resolutionUniformLocation = gl.getUniformLocation(program, "u_resolution")
   const colorUniformLocation = gl.getUniformLocation(program, "u_color")

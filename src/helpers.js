@@ -49,6 +49,13 @@ const createProgram = (gl, vertexShader, fragmentShader) => {
   return program
 }
 
+const createShaderProgram = (gl, vertexSource, fragmentSource) => {
+  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexSource)
+  const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentSource)
+  
+  return createProgram(gl, vertexShader, fragmentShader)
+}
+
 const resizeCanvasToDisplaySize = (canvas) => {
   const displayWidth = canvas.clientWidth
   const displayHeight = canvas.clientHeight

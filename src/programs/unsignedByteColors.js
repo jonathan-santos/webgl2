@@ -1,7 +1,7 @@
 {
   const gl = getGLContext({ width: 400, height: 400 })
 
-  const vertexShaderSource = `#version 300 es
+  const vs = `#version 300 es
     in vec4 a_position;
     in vec3 a_color;
 
@@ -13,7 +13,7 @@
     }
   `
 
-  const fragmentShaderSource = `#version 300 es
+  const fs = `#version 300 es
     precision highp float;
 
     in vec3 v_color;
@@ -25,10 +25,7 @@
     }
   `
 
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource)
-  const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource)
-
-  const program = createProgram(gl, vertexShader, fragmentShader)
+  const program = createShaderProgram(gl, vs, fs)
 
   const vao = gl.createVertexArray()
   gl.bindVertexArray(vao)

@@ -59,9 +59,9 @@ main.p .program {
 
 .close-program {
   width: 2.5rem;
-  height: 2rem;
+  height: 2.5rem;
+  padding: 0;
   line-height: 0.5rem;
-  padding: 0.65rem;
   font-size: 1.5rem;
   position: absolute;
   left: 0.25rem;

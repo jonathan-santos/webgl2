@@ -10,6 +10,8 @@ const getGLContext = ({ canvasSelector = 'canvas', width, height }) => {
     throw new Error('Unsupported browser')
   }
 
+  resizeCanvasToDisplaySize(gl.canvas)
+
   return gl
 }
 
@@ -66,4 +68,6 @@ const resizeCanvasToDisplaySize = (canvas) => {
     canvas.width = displayWidth
     canvas.height = displayHeight
   }
+
+  gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 }

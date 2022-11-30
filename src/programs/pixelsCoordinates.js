@@ -55,9 +55,6 @@
   gl.enableVertexAttribArray(positionAttributeLocation)
   gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0)
 
-  resizeCanvasToDisplaySize(gl.canvas)
-  gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-
   gl.clearColor(1, 1, 1, 1)
   gl.clear(gl.COLOR_BUFFER_BIT)
 
